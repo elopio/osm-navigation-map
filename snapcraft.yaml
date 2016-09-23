@@ -7,16 +7,17 @@ description: |
   The application is helpful to add/verify/modify turn-restrictions on
   OpenStreetMap.
 
-grade: devel
+grade: stable
 confinement: strict
 
 apps:
   osm-navigation-map:
-    command: sh -c \"cd $SNAP/lib/node_modules/osm-navigation-map && npm start\"
-    plugs: [network]
-
+    command: serve $SNAP/lib/node_modules/osm-navigation-map
+    plugs: [network, network-bind]
+    daemon: simple
 
 parts:
   osm-navigation-map:
     source: .
     plugin: nodejs
+    node-packages: [serve]
