@@ -1,0 +1,22 @@
+name: osm-navigation-map
+version: master
+summary: A map to explore navigation data in OpenStreetMap
+description: |
+  The OpenStreetMap Navigation map is a web application which uses Mapillary
+  vector layer to highlight the traffic signages detected in Mapillary images.
+  The application is helpful to add/verify/modify turn-restrictions on
+  OpenStreetMap.
+
+grade: devel
+confinement: strict
+
+apps:
+  osm-navigation-map:
+    command: sh -c \"cd $SNAP/lib/node_modules/osm-navigation-map && npm start\"
+    plugs: [network]
+
+
+parts:
+  osm-navigation-map:
+    source: .
+    plugin: nodejs
